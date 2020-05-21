@@ -2,7 +2,7 @@
 
 *Because why not?*
 
-![demo](H:\School code stuff\Kaguya\img\demo.gif)
+![demo](img\demo.gif)
 
 Inspired by [this](https://www.reddit.com/r/Animemes/comments/gnvhwb/kaguya_pong/) reddit post by [u/tupruminz](https://www.reddit.com/user/tupruminz/), from the anime [Kaguya-sama: Love is War](https://myanimelist.net/anime/37999/Kaguya-sama_wa_Kokurasetai__Tensai-tachi_no_Renai_Zunousen) by Akasaka Aka
 
