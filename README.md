@@ -17,4 +17,4 @@ git clone https://github.com/LiterallyFabian/Kaguya-Pong
 cd Kaguya-Pong
 ```
 
-If you just want to play the game: https://sajber.me/Kaguya-pong
+If you just want to play the game: http://sajber.me/Kaguya-pong
