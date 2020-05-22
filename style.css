@@ -6,10 +6,13 @@
   body {
     background-image: url(img/background.png);
     position: fixed;
-    left: 890px;
-    top:162px;
-    justify-content: center;
+    left: 47.5%;
+    top:18%;
     background-repeat: no-repeat;
+    background-size: cover;
+  }
+  canvas{
+    width: auto;
   }
   #eye{
     display: none;

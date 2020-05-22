@@ -1,7 +1,10 @@
 const canvas = document.getElementById('game');
+canvas.height = window.innerHeight/1.8;
+canvas.width = window.innerWidth/3.5;
 const context = canvas.getContext('2d');
 const grid = 25;
-const paddleHeight = grid * 7; // 80
+const paddleHeight = window.innerHeight/grid*3.6; // 80
+const paddleWidth = grid * 1.7;
 const maxPaddleY = canvas.height - grid - paddleHeight;
 
 var paddleSpeed = 6;
@@ -10,9 +13,9 @@ var lastTime = Date.now();
 
 const leftPaddle = {
   // start in the middle of the game on the left side
-  x: grid * 2,
+  x: grid,
   y: canvas.height / 2 - paddleHeight / 2,
-  width: grid * 1.6,
+  width: paddleWidth,
   height: paddleHeight,
 
   // paddle velocity
@@ -20,9 +23,9 @@ const leftPaddle = {
 };
 const rightPaddle = {
   // start in the middle of the game on the right side
-  x: canvas.width - grid * 3,
+  x: canvas.width - grid-30,
   y: canvas.height / 2 - paddleHeight / 2,
-  width: grid * 1.6,
+  width: paddleWidth,
   height: paddleHeight,
 
   // paddle velocity
@@ -55,9 +58,9 @@ function collides(obj1, obj2) {
 // Calculates the factor by which something moved in a time sensitive manner
 // Scaled relative to 60hz
 // For example 60hz e.g. 0.0166...ms would return 1, 120hz 0.5, 30hz 2
-function calculateRelativeSpeed(msLast, msNow){
-        // time passed since last / 16ms
-  return (msNow - msLast) / (1000/60);
+function calculateRelativeSpeed(msLast, msNow) {
+  // time passed since last / 16ms
+  return (msNow - msLast) / (1000 / 60);
 }
 
 // game loop
