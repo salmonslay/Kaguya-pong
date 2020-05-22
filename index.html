@@ -22,7 +22,8 @@
 
     var paddleSpeed = 6;
     var ballSpeed = 6;
-
+    var lastTime = Date.now();
+    
     const leftPaddle = {
       // start in the middle of the game on the left side
       x: grid * 2,
@@ -67,14 +68,24 @@
         obj1.y + obj1.height > obj2.y;
     }
 
+    // Calculates the factor by which something moved in a time sensitive manner
+    // Scaled relative to 60hz
+    // For example 60hz e.g. 0.0166...ms would return 1, 120hz 0.5, 30hz 2
+    function calculateRelativeSpeed(msLast, msNow){
+            // time passed since last / 16ms
+      return (msNow - msLast) / (1000/60);
+    }
+
     // game loop
     function loop() {
+      let relativeSpeedMultiplier = calculateRelativeSpeed(lastTime, Date.now());
+      lastTime = Date.now();
       requestAnimationFrame(loop);
       context.clearRect(0, 0, canvas.width, canvas.height);
 
       // move paddles by their velocity
-      leftPaddle.y += leftPaddle.dy;
-      rightPaddle.y += rightPaddle.dy;
+      leftPaddle.y += leftPaddle.dy * relativeSpeedMultiplier;
+      rightPaddle.y += rightPaddle.dy * relativeSpeedMultiplier;
 
       // prevent paddles from going through walls
       if (leftPaddle.y < grid) {
@@ -96,8 +107,8 @@
       context.drawImage(sauce, rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height);
 
       // move ball by its velocity
-      ball.x += ball.dx;
-      ball.y += ball.dy;
+      ball.x += ball.dx * relativeSpeedMultiplier;
+      ball.y += ball.dy * relativeSpeedMultiplier;
 
       // prevent ball from going through walls by changing its velocity
       if (ball.y < grid) {
